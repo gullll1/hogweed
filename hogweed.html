@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Борьба с борщивиком</title>
+<style>
+  /* Общие стили */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://www.transparenttextures.com/patterns/linen.png');
+    background-repeat: repeat;
+    color: #222;
+  }
+  a {
+    color: #0044cc;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Верхняя область: шапка */
+  header {
+    background-color: #003366;
+    color: white;
+    padding: 10px 20px;
+    position: relative;
+  }
+
+  /* Бегущая строка */
+  #marquee {
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  #marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 15s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+  }
+
+  
+
+  /* Основная структура */
+  .container {
+    display: flex;
+    min-height: 80vh;
+  }
+
+  /* Главное меню */
+  nav {
+    width: 220px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 2px solid #ccc;
+  }
+  nav ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  nav ul li {
+    margin-bottom: 10px;
+  }
+
+  /* Контент */
+  main {
+    flex-grow: 1;
+    padding: 20px;
+  }
+
+  /* Заголовки */
+  h1 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #003366;
+  }
+  h2 {
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #004488;
+  }
+
+  /* Изображения */
+  img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+
+  /* Форма */
+  form {
+    margin-top: 30px;
+    background-color: #e9f0f8;
+    padding: 15px;
+    border-radius: 5px;
+    max-width: 500px;
+  }
+  form label {
+    display: block;
+    margin: 10px 0 5px;
+  }
+  form input[type="text"],
+  form input[type="email"],
+  form textarea {
+    width: 100%;
+    padding: 7px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  form textarea {
+    resize: vertical;
+  }
+  form button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  form button:hover {
+    background-color: #0055aa;
+  }
+html
+
+  /* Текст выровнен по ширине */
+  p {
+    text-align: justify;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div id="marquee"><span>Добро пожаловать на сайт Борьбы с борщивиком</span></div>
+</header>
+
+<div class="container">
+  <nav>
+    <ul>
+      <li><a href="#main" onclick="showPage('main')">Контакты</a></li>
+      <li><a href="#moscow" onclick="showPage('moscow')">Информация</a></li>
+  </nav>
+
+  <main id="content">
+    <!-- Контент будет загружаться сюда -->
+  </main>
+</div>
+
+<script>
+  // Контент страниц
+  const pages = {
+    main: `
+     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+      Контакты<br>
+      Митрофанов Юрий Владимирович<br>
+      Номер телефона: +7 (901) 711-03-09<br>
+      Почта: uramitrofa@gmail.com
+    `,
+
+    moscow: `
+      <h1>Информация</h1>
+      <p>Москва — столица и самый большой город страны. Здесь расположены: Московский Кремль и Красная площадь, Третьяковская Галерея, Музей имени Пушкина, Храм Христа-Спасителя и многие другие знаменитые места.</p>
+html
+
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Moscow_Kremlin_2011.jpg/640px-Moscow_Kremlin_2011.jpg" alt="Московский Кремль" />
+      <p>В Москве также много парков, театров и музеев, которые стоит посетить.</p>
+      <p><a href="#main" onclick="showPage('main')">На главную</a></p>
+    `,
+  };
+
+  // Функция для отображения страницы
+  function showPage(page) {
+    const content = document.getElementById('content');
+    if (pages[page]) {
+      content.innerHTML = pages[page];
+    } else {
+      content.innerHTML = "<p>Страница не найдена</p>";
+    }
+    window.scrollTo(0,0);
+  }
+
+  // Изначально отображаем главную страницу
+  showPage('main');
+
+  // Обработка формы
+  function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    alert(`Спасибо, ${form.name.value}! Ваше сообщение отправлено.`);
+    form.reset();
+    return false;
+  }
+
+  // Очистка формы
+  function clearForm() {
+    const form = document.getElementById('feedbackForm');
+    if (form) form.reset();
+  }
+</script>
+
+</body>
+</html>
